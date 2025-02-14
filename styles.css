@@ -1,0 +1,355 @@
+/* Общие настройки */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px 30px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7); /* Более светлый текст */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    caret-color: white; /* Цвет курсора */
+}
+
+input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Светлый, но заметный placeholder */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #ff9a5b, #ff5f6d);
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 85, 109, 0.4);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 85, 109, 0.5);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(255, 85, 109, 0.4);
+}
+
+/* Стиль для кнопки "Добавить задачу" */
+#addTaskButton {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #ff9a5b, #ff5f6d);
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 85, 109, 0.4);
+    margin-bottom: 20px; /* Добавляем отступ снизу */
+}
+
+#addTaskButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 85, 109, 0.5);
+}
+
+#addTaskButton:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(255, 85, 109, 0.4);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    position: relative; /* Для позиционирования иконок */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+li.completed span {
+    text-decoration: line-through;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Стиль для номера задачи */
+.task-number {
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+    display: inline-block; /* Номер задачи как inline-block */
+    margin-right: 5px; /* Отступ между номером и текстом */
+    vertical-align: top; /* Выравнивание по верхнему краю */
+}
+
+/* Контейнер для текста задачи */
+.task-text {
+    width: 100%;
+    margin-bottom: 10px;
+    word-wrap: break-word; /* Перенос текста */
+    word-break: break-all; /* Перенос слов, если они слишком длинные */
+}
+
+.task-text span {
+    display: inline-block; /* Текст задачи как inline-block */
+    line-height: 1.5; /* Улучшаем читаемость */
+    word-break: break-word; /* Перенос текста */
+}
+
+/* Контейнер для иконок действий */
+.task-icons {
+    position: absolute;
+    top: 5px; /* Иконки над задачей */
+    right: 5px; /* Иконки справа */
+    display: flex;
+    gap: 5px;
+    z-index: 1; /* Повышаем индекс, чтобы кнопки были выше текста */
+}
+
+.task-icons button {
+    background: rgba(255, 255, 255, 0.2); /* Более светлый фон для кнопок */
+    border: none;
+    color: white;
+    font-size: 0.8rem; /* Уменьшаем размер иконок */
+    padding: 3px 6px; /* Уменьшаем размер кнопок */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.task-icons button:hover {
+    background: rgba(255, 255, 255, 0.3); /* Немного светлее при наведении */
+    transform: scale(1.1);
+}
+
+.task-icons button.remove {
+    color: #ff5e57;
+}
+
+.task-icons button.complete {
+    color: #2ed573;
+}
+
+.task-icons button.edit {
+    color: #ffa502;
+}
+
+.filters {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #3742fa, #d154fa);
+    color: white;
+    box-shadow: 0 4px 10px rgba(55, 66, 250, 0.4);
+}
+
+.filter:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(55, 66, 250, 0.5);
+}
+
+.filter:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(55, 66, 250, 0.4);
+}
+
+/* Стили для модального окна */
+.modal {
+    display: none; /* По умолчанию скрыто */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333; /* Темный цвет для заголовка */
+}
+
+.modal input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black; /* Текст черного цвета */
+    background-color: white; /* Фон белого цвета */
+    font-size: 1rem;
+    caret-color: black; /* Цвет курсора */
+    font-family: 'Poppins', sans-serif; /* Читаемый шрифт */
+}
+
+.modal input[type="text"]:focus {
+    outline: 2px solid #6a11cb; /* Подсветка при фокусе */
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5); /* Легкая тень */
+}
+
+.modal button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #2ed573, #0be881);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.modal button:hover {
+    background: linear-gradient(135deg, #0be881, #2ed573);
+}
+
+/* Стиль для кнопки "Загрузить еще" */
+#loadMoreButton {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #3742fa, #d154fa);
+    color: white;
+    box-shadow: 0 4px 10px rgba(55, 66, 250, 0.4);
+}
+
+#loadMoreButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(55, 66, 250, 0.5);
+}
+
+#loadMoreButton:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(55, 66, 250, 0.4);
+}
+
+/* Контейнер для списка задач с прокруткой */
+.task-list-container {
+    max-height: 300px; /* Максимальная высота контейнера */
+    overflow-y: auto; /* Вертикальная прокрутка */
+    margin-bottom: 10px;
+}
+
+/* Стили для кастомной полосы прокрутки */
+.task-list-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.task-list-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.task-list-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ff9a5b, #ff5f6d);
+    border-radius: 10px;
+}
+
+.task-list-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #ff5e57, #c83731);
+}

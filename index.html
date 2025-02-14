@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6a11cb">
+    <title>Задачи</title>
+    <link rel="manifest" href="/manifest.json">    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Список дел</h1>
+        <input type="text" id="taskInput" placeholder="Введите новую задачу">
+        <button id="addTaskButton">Добавить задачу</button>
+        
+        <!-- Контейнер для списка задач с прокруткой -->
+        <div class="task-list-container">
+            <ul id="taskList"></ul>
+        </div>
+
+        <!-- Кнопка загрузить еще -->
+        <button id="loadMoreButton" style="display: none;">Загрузить еще</button>
+
+        <!-- Фильтры -->
+        <div class="filters">
+            <button class="filter" data-filter="all">Все</button>
+            <button class="filter" data-filter="active">Активные</button>
+            <button class="filter" data-filter="completed">Завершенные</button>
+        </div>
+
+        <!-- Модальное окно для редактирования задачи -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Редактировать</h2>
+                <input type="text" id="editTaskInput" placeholder="Отредактируйте задачу">
+                <button id="saveEditButton">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
